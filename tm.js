@@ -1,4 +1,14 @@
-function ct(cx, cy) { var im = []; for (let i = 0; i < gx; i++) { im[i] = []; for (let j = 0; j < gy; j++) { im[i][j] = {r: 0, g: 0, b: 0}; }} return im; }
-const gx = 180;
-const gy = 230;
+const ct = (sx, sy) => { var im = []; for (let i = 0; i < sx; i++) { im[i] = []; for (let j = 0; j < sy; j++) { im[i][j] = { r: 0, g: 0, b: 0 }; } } return im; }
+const hpq = (w0, i0, j0, k0, w1, i1, j1, k1) => { return { w: ((w0 * w1) - (i0 * i1) - (j0 * j1) - (k0 * k1)), i: ((w0 * i1) + (i0 * w1) + (j0 * k1) - (k0 * j1)), j: ((w0 * j1) - (i0 * k1) + (j0 * w1) + (k0 * i1)), k: ((w0 * k1) + (i0 * j1) - (j0 * i1) + (k0 * w1)) }; }
+const bc = (px, py, pz, s, lsx, lsy, lsz, lex, ley, lez) => { var c = []; var a0 = (lex - lsx) / (ley - lsy); var b0 = (lex - lsx) / (lez - lsz); var x1 = 0 - ((lsy * a0) - lsx); var y1 = 0 - ((lsz * b0) - lsx);
+    c[0] = (x1 * x1) / b0; c[1] = (x1 * y1 * 2) / b0; c[2] = 2 * x1 * pz; c[3] = (y1 * y1) / b0; c[4] = 2 * y1 * pz; c[5] = pz * pz * b0; c[6] = 2 * x1 * px * b0; c[7] = x1 * x1 * b0; c[8] = px * px * b0; c[9] = py * py * b0; c[10] = s * b0; var q = c[0] - c[1] + c[2] + c[3] - c[4] + c[5] + c[6] + c[7] + c[8] + c[9] - c[10];
+    c[0] = 0 - ((a0 * a0) / b0); c[1] = a0 * a0 * b0; var p = c[0] - c[1] - b0; c[0] = ((2 * a0 * x1) - (2 * y1 * a0)) / (0 - b0); c[1] = 2 * a0 * pz; c[2] = 2 * a0 * x1 * b0; c[3] = 2 * a0 * px * b0; c[4] = 2 * py * b0; var t = c[0] - c[1] - c[2] - c[3] - c[4]; c[8] = (q / p) + ((0.25 * t * t) / (p * p));
+    var s = [0, 0, 0, 0, 0, 0, 0]; if (Math.sign(c[8]) === -1) { s[6] = 'x' } else { s[6] = 0; s[1] = Math.sqrt(c[8]) - (t / 2 / p); s[0] = (s[1] * a0) + x1; s[2] = (x1 + (s[1] * a0) - y1) / b0; s[4] = (-1 * Math.sqrt(c[8])) - (t / 2 / p); s[3] = (s[4] * a0) + x1; s[5] = (x1 + (s[4] * a0) - y1) / b0; }}
+const gx = 180; const gy = 230; const fv = 80; const c = { x: 3, y: 3, z: 3 }; const rt = { x: 0, y: 0, z: 0 };
+const oj = [{ pos: { x: 0, y: 0, z: 0 }, size: { x: 3, y: 3, z: 3 }, type: 0, color: { r: 14, g: 239, b: 30 } }];
 var mg = ct(gx, gy);
+for (let i = 0; i < gx; i++) {
+    for (let j = 0; j < gy; j++) {
+        mg[i][j]
+    }
+}
