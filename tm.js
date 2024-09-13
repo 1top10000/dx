@@ -14,9 +14,9 @@ for (let i = 0; i < gx; i++) {
     mg[i] = [];
     for (let j = 0; j < gy; j++) {
         let min = Infinity;
+        const a = acpt(crv.i, crv.j, crv.k, (i - x5) * cx, crv0.i, crv0.j, crv0.k); const b = acpt(crv1.i, crv1.j, crv1.k, (i - x5) * cx, crv0.i, crv0.j, crv0.k); let d = acpt(a.i, a.j, a.k, (j - y5) * cy, b.i, b.j, b.k); d = {i: (d.i + c.x), j: (d.j + c.y), i: (d.k + c.z)}; 
         for (let f_ of oj) {
-            const a = acpt(crv.i, crv.j, crv.k, (i - x5) * cx, crv0.i, crv0.j, crv0.k); const b = acpt(crv1.i, crv1.j, crv1.k, (i - x5) * cx, crv0.i, crv0.j, crv0.k); const c = acpt(a.i, a.j, a.k, (j - y5) * cy, b.i, b.j, b.k);
-            
+            const pnt = bc(f_.pos.x, f_.pos.y, f_.pos.z, f_.size.x, c.x, c.y, c.x, d.i, d.j, d.k); if (pnt[6] !== 'x') { const ds = dst(pnt[0], pnt[1], pnt[2], pnt[3], pnt[4], pnt[5]); }
         }
         mg[i][j] = { r: 0, g: 0, b: 0 };
     }
