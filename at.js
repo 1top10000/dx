@@ -67,3 +67,21 @@ const xta = (__a, _q) => {
     }
     return _a;
 };
+const sa = (_q_) => {
+    let __q = dc(_q_);
+    for (let _i_ of _q_) {
+        let tli = dc(dc);
+        delete tli[tli.indexOf(_i_)];
+        while (tli.indexOf(_i_) != -1) {
+            
+        }
+    }
+};
+const fro = (_r_, t__) => {
+    let __t = ts(t__);
+    let gh_ = dc(__t);
+    for (let _i_ = 0; _i_ < _r_; _i_++) {
+        gh = xta(gh, __t);
+    }
+    return gh;
+};
