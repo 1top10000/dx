@@ -13,10 +13,10 @@ const oj = [{ pos: { x: 0, y: 0, z: 0 }, size: { x: 3, y: 3, z: 3 }, type: 0, co
 for (let i = 0; i < gx; i++) {
     mg[i] = [];
     for (let j = 0; j < gy; j++) {
-        let min = Infinity;
+        let min = Infinity; let nu = 0; let mun = 0; let mp;
         const a = acpt(crv.i, crv.j, crv.k, (i - x5) * cx, crv0.i, crv0.j, crv0.k); const b = acpt(crv1.i, crv1.j, crv1.k, (i - x5) * cx, crv0.i, crv0.j, crv0.k); let d = acpt(a.i, a.j, a.k, (j - y5) * cy, b.i, b.j, b.k); d = {i: (d.i + c.x), j: (d.j + c.y), i: (d.k + c.z)}; 
         for (let f_ of oj) {
-            const pnt = bc(f_.pos.x, f_.pos.y, f_.pos.z, f_.size.x, c.x, c.y, c.x, d.i, d.j, d.k); if (pnt[6] !== 'x') { const ds = dst(pnt[0], pnt[1], pnt[2], pnt[3], pnt[4], pnt[5]); }
+            nu = nu + 1; let ds; const pnt = bc(f_.pos.x, f_.pos.y, f_.pos.z, f_.size.x, c.x, c.y, c.z, d.i, d.j, d.k); if (pnt[6] !== 'x') { const ds0 = dst(pnt[0], pnt[1], pnt[2], c.x, c.y, c.z); const ds1 = dst(pnt[3], pnt[4], pnt[5], c.x, c.y, c.z); ds = Math.min(ds0, ds1); } if (ds > min) { min = ds; mun = nu; if (ds0 > ds1) { mp = [pnt[3], pnt[4], pnt[5]]; } else { mp = [pnt[0], pnt[1], pnt[2]]; } }
         }
         mg[i][j] = { r: 0, g: 0, b: 0 };
     }
