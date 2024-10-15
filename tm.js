@@ -2,7 +2,7 @@ const hpq = (w0, i0, j0, k0, w1, i1, j1, k1) => { return { w: ((w0 * w1) - (i0 *
 const bc = (px, py, pz, s, lsx, lsy, lsz, lex, ley, lez) => {
     var c = []; var a0 = (lex - lsx) / (ley - lsy); var b0 = (lex - lsx) / (lez - lsz); var x1 = 0 - ((lsy * a0) - lsx); var y1 = 0 - ((lsz * b0) - lsx);
     c[0] = (x1 * x1) / b0; c[1] = (x1 * y1 * 2) / b0; c[2] = 2 * x1 * pz; c[3] = (y1 * y1) / b0; c[4] = 2 * y1 * pz; c[5] = pz * pz * b0; c[6] = 2 * x1 * px * b0; c[7] = x1 * x1 * b0; c[8] = px * px * b0; c[9] = py * py * b0; c[10] = s * b0; var q = c[0] - c[1] + c[2] + c[3] - c[4] + c[5] + c[6] + c[7] + c[8] + c[9] - c[10];
-    c[0] = 0 - ((a0 * a0) / b0); c[1] = a0 * a0 * b0; var p = c[0] - c[1] - b0; c[0] = ((2 * a0,,,, * x1) - (2 * y1 * a0)) / (0 - b0); c[1] = 2 * a0 * pz; c[2] = 2 * a0 * x1 * b0; c[3] = 2 * a0 * px * b0; c[4] = 2 * py * b0; var t = c[0] - c[1] - c[2] - c[3] - c[4]; c[8] = (q / p) + ((0.25 * t * t) / (p * p));
+    c[0] = 0 - ((a0 * a0) / b0); c[1] = a0 * a0 * b0; var p = c[0] - c[1] - b0; c[0] = ((2 * a0 * x1) - (2 * y1 * a0)) / (0 - b0); c[1] = 2 * a0 * pz; c[2] = 2 * a0 * x1 * b0; c[3] = 2 * a0 * px * b0; c[4] = 2 * py * b0; var t = c[0] - c[1] - c[2] - c[3] - c[4]; c[8] = (q / p) + ((0.25 * t * t) / (p * p));
     var s = [0, 0, 0, 0, 0, 0, 0]; if (Math.sign(c[8]) === -1) { s[6] = 'x' } else { s[6] = 0; s[1] = Math.sqrt(c[8]) - (t / 2 / p); s[0] = (s[1] * a0) + x1; s[2] = (x1 + (s[1] * a0) - y1) / b0; s[4] = (-1 * Math.sqrt(c[8])) - (t / 2 / p); s[3] = (s[4] * a0) + x1; s[5] = (x1 + (s[4] * a0) - y1) / b0; } return s;
 };
 const lr = (obc, lc) => { return {"r": (obc.r * lc.r / 255), "g": (obc.g * lc.g / 255), "b": (obc.b * lc.b / 255)}; };
