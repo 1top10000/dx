@@ -1,4 +1,4 @@
-@echo off
+\@echo off
 setlocal Enabledelayedexpansion
 set /a H[0][0] = 27145
 set /a H[0][1] = 58983
@@ -210,12 +210,10 @@ set sha256input[!sha256N!][14][1]=0
 set /a "sha256input[!sha256N!][15][0]=(!inputlen!&2147418112)>>16"
 set /a "sha256input[!sha256N!][15][1]=!inputlen!&65535"
 for /L %%i in (0,1,%sha256N%) do (
-  pause
   for /L %%t in (16,1,63) do (
-    echo %%t
     set /a t2=%%t-2
     set tt20=sha256input[%%i][!t2!][0]
-    set tt21=sha256input[%%i][!t2!][0]
+    set tt21=sha256input[%%i][!t2!][1]
     call :fr0 !tt20!
     call :fr1 !tt21!
     call :Lsgm1 !return0! !return1!
@@ -238,15 +236,13 @@ for /L %%i in (0,1,%sha256N%) do (
     call :fr0 !tt160!
     call :fr1 !tt161!
     call :addmod !returnaddmod0! !returnaddmod1! !return0! !return1!
-    set /a sha256input[%%i][%%t][0]=!returnaddmod0!
-    set /a sha256input[%%i][%%t][1]=!returnaddmod1!
+    set sha256input[%%i][%%t][0]=!returnaddmod0!
+    set sha256input[%%i][%%t][1]=!returnaddmod1!
   )
-  pause
   for /L %%j in (0,1,7) do (
     set /a PH[%%j][0]=!H[%%j][0]!
     set /a PH[%%j][1]=!H[%%j][1]!
   )
-  pause
   for /L %%t in (0,1,63) do (
     call :Usgm1 !H[4][0]! !H[4][1]!
     call :Ch !H[4][0]! !H[4][1]! !H[5][0]! !H[5][1]! !H[6][0]! !H[6][1]!
@@ -280,7 +276,6 @@ for /L %%i in (0,1,%sha256N%) do (
     set /a H[0][0]=!returnaddmod0!
     set /a H[0][1]=!returnaddmod1!
   )
-  pause
   for /L %%t in (0,1,7) do (
     call :addmod !H[%%t][0]! !H[%%t][1]! !PH[%%t][0]! !PH[%%t][1]!
     set /a H[%%t][0]=!returnaddmod0!
@@ -332,18 +327,19 @@ pause
   set return1=!%~1!
   exit /b
 :rot
-  set /a rots=16-%~3
-  set /a "rotc1=(1<<%~3)-1"
+  set /a "p3=%3 %% 16"
+  set /a rots=16-p3
+  set /a "rotc1=(1<<p3)-1"
   set /a "rotR0=%rotc1%&%~2"
-  set /a "rotR1=%~1>>%~3"
+  set /a "rotR1=%~1>>p3"
   set /a "rotR2=%rotc1%&%~1"
-  set /a "rotR3=%~2>>%~3"
+  set /a "rotR3=%~2>>p3"
   if %~3 lss 16 (
     set /a "returnrot0=(%rotR0%<<%rots%)+%rotR1%"
     set /a "returnrot1=(%rotR2%<<%rots%)+%rotR3%"
   ) else (
-    set /a "returnrot1=(%rotR0%<<%rots%)+%rotR1%"
     set /a "returnrot0=(%rotR2%<<%rots%)+%rotR3%"
+    set /a "returnrot1=(%rotR0%<<%rots%)+%rotR1%"
   )
   exit /b
 :SHR
