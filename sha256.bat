@@ -1,4 +1,4 @@
-\@echo off
+@echo off
 setlocal Enabledelayedexpansion
 set /a H[0][0] = 27145
 set /a H[0][1] = 58983
@@ -236,8 +236,8 @@ for /L %%i in (0,1,%sha256N%) do (
     call :fr0 !tt160!
     call :fr1 !tt161!
     call :addmod !returnaddmod0! !returnaddmod1! !return0! !return1!
-    set sha256input[%%i][%%t][0]=!returnaddmod0!
-    set sha256input[%%i][%%t][1]=!returnaddmod1!
+    set /a sha256input[%%i][%%t][0]=!returnaddmod0!
+    set /a sha256input[%%i][%%t][1]=!returnaddmod1!
   )
   for /L %%j in (0,1,7) do (
     set /a PH[%%j][0]=!H[%%j][0]!
@@ -406,8 +406,8 @@ pause
   )
   exit /b
 :Ch
-  set /a "returnCh0=(%~1&%~3)^(%~1&%~5)"
-  set /a "returnCh1=(%~2&%~4)^(%~2&%~6)"
+  set /a "returnCh0=(%~1&%~3)^((65535-%~1)&%~5)"
+  set /a "returnCh1=(%~2&%~4)^((65535-%~2)&%~6)"
   exit /b
 :Maj
   set /a "returnMaj0=(%~1&%~3)^(%~1&%~5)^(%~3&%~5)"
